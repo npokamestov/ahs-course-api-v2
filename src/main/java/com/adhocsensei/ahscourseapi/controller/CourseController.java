@@ -44,18 +44,19 @@ public class CourseController {
         return repo.findById(id);
     }
 
-    @PostMapping("/createcourse")
+    @PostMapping("/course")
     public Course createCourse(@RequestBody Course course) {
         return repo.save(course);
     }
 
     @PutMapping("/course/{id}")
     public void updateCourseById(@PathVariable Long id, @RequestBody Course course) {
-        Optional<Course> courseOptional = repo.findById(id);
-        if (courseOptional.isPresent()) {
+        Optional<Course> optionalCourse = repo.findById(id);
+        if (optionalCourse.isPresent()) {
             course.setId(id);
             repo.save(course);
         }
+//        catch error and have appropriate response
     }
 
     @DeleteMapping("/course/{id}")
