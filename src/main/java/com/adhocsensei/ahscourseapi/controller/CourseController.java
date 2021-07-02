@@ -34,9 +34,13 @@ public class CourseController {
         }
         else if (shortDescription !=null) {
             return repo.findByShortDescription(shortDescription);
-        }
-        List<Course> allCourses = repo.findAll();
-        return allCourses;
+        } else
+        return repo.findAll();
+    }
+
+    @GetMapping("/course/sensei/{id}")
+    public List<Course> getCourseBySenseiId(@PathVariable Long id) {
+        return repo.findBySenseiId(id);
     }
 
     @GetMapping("/course/{id}")
